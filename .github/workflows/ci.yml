@@ -21,12 +21,13 @@ jobs:
       env:
         CXX: g++
     - run: meson test -C builddirgcc
+    - run: meson compile -C builddirgcc
     - run: ninja coverage -C builddirgcc
     - run: meson setup builddirclang -Db_santize=address -Db_coverage=true
       env:
         CXX: clang++-15
     - run: meson test -C builddirclang
-    - run: meson compile -C builddir/
+    - run: meson compile -C builddirclang
     - run: ninja coverage -C builddirclang
     - uses: actions/upload-artifact@v1
       if: failure()
