@@ -26,6 +26,7 @@ jobs:
       env:
         CXX: clang++-15
     - run: meson test -C builddirclang
+    - run: meson compile -C builddir/
     - run: ninja coverage -C builddirclang
     - uses: actions/upload-artifact@v1
       if: failure()
