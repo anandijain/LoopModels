@@ -48,6 +48,7 @@ jobs:
         python-version: '3.x'
     - run: brew install gcc llvm@15 googletest ninja pkg-config cmake
     - run: pip install meson ninja gcovr
+    - run: echo "/usr/local/opt/llvm/bin" >> $GITHUB_PATH
     - run: |
         echo $CPLUS_INCLUDE_PATH
         export CPLUS_INCLUDE_PATH=$(brew --prefix googletest)/include:$CPLUS_INCLUDE_PATH
