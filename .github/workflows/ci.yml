@@ -26,6 +26,7 @@ jobs:
     - run: meson setup builddirclang -Db_santize=address -Db_coverage=true
       env:
         CXX: clang++-15
+        CPLUS_INCLUDE_PATH: $(brew --prefix googletest)/include:$CPLUS_INCLUDE_PATH
     - run: meson test -C builddirclang
     - run: meson compile -C builddirclang
     - run: ninja coverage -C builddirclang
