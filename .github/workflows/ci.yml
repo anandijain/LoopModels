@@ -63,6 +63,8 @@ jobs:
         CPLUS_INCLUDE_PATH: $(brew --prefix googletest)/include:$CPLUS_INCLUDE_PATH
     - run: meson test -C builddir/
     - run: meson compile -C builddir/
+      env: 
+        CPLUS_INCLUDE_PATH: $(brew --prefix googletest)/include:$CPLUS_INCLUDE_PATH
     - run: ninja coverage -C builddir
     # - run: rm -rf builddir/
     # - run: meson setup builddir/
