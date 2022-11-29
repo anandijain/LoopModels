@@ -26,7 +26,6 @@ jobs:
     - run: meson setup builddirclang -Db_santize=address -Db_coverage=true
       env:
         CXX: clang++-15
-        CPLUS_INCLUDE_PATH: $(brew --prefix googletest)/include:$CPLUS_INCLUDE_PATH
     - run: meson test -C builddirclang
     - run: meson compile -C builddirclang
     - run: ninja coverage -C builddirclang
@@ -49,7 +48,10 @@ jobs:
         python-version: '3.x'
     - run: brew install gcc llvm@15 googletest ninja pkg-config cmake
     - run: pip install meson ninja gcovr
-    - run: echo "/usr/local/opt/llvm/bin" >> $GITHUB_PATH
+    - run: |
+        echo $CPLUS_INCLUDE_PATH
+        export CPLUS_INCLUDE_PATH=$(brew --prefix googletest)/include:$CPLUS_INCLUDE_PATH
+        echo $CPLUS_INCLUDE_PATH
     - run: echo $(which clang++)
     - run: meson setup builddir -Db_santize=address -Db_coverage=true
       env:
@@ -57,6 +59,7 @@ jobs:
         LDFLAGS: "-L/usr/local/opt/llvm/lib/c++ -Wl,-rpath,/usr/local/opt/llvm/lib/c++ -L/usr/local/opt/llvm/lib"
         CPPFLAGS: "-I/usr/local/opt/llvm/include"
         CXXFLAGS: "-stdlib=libc++"
+        CPLUS_INCLUDE_PATH: $(brew --prefix googletest)/include:$CPLUS_INCLUDE_PATH
     - run: meson test -C builddir/
     - run: meson compile -C builddir/
     - run: ninja coverage -C builddir
