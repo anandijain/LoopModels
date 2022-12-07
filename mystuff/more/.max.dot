@@ -1,0 +1,12 @@
+digraph "CFG for 'max' function" {
+	label="CFG for 'max' function";
+
+	Node0x120635d60 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{entry:\l  %retval = alloca i32, align 4\l  %0 = icmp sgt i32 %a, %b\l  br i1 %0, label %btrue, label %bfalse\l|{<s0>T|<s1>F}}"];
+	Node0x120635d60:s0 -> Node0x120635f50;
+	Node0x120635d60:s1 -> Node0x120635fb0;
+	Node0x120635f50 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#f59c7d70",label="{btrue:                                            \l  store i32 %a, i32* %retval, align 4\l  br label %end\l}"];
+	Node0x120635f50 -> Node0x120636180;
+	Node0x120635fb0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#f59c7d70",label="{bfalse:                                           \l  store i32 %b, i32* %retval, align 4\l  br label %end\l}"];
+	Node0x120635fb0 -> Node0x120636180;
+	Node0x120636180 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{end:                                              \l  %1 = load i32, i32* %retval, align 4\l  ret i32 %1\l}"];
+}

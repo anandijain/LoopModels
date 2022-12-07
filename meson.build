@@ -44,6 +44,7 @@ if gtest_dep.found()
     'simplex_test',
     'string_to_intmat_test',
     'unimodularization_test',
+    'ir_build_test'
   ]
 
   foreach f : test_files
