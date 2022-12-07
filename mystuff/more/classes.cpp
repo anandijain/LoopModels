@@ -17,13 +17,15 @@ template <typename T> size_t getlen(T x) { return x.len; };
 template <typename T>
 concept IsFoo = requires(T x) {
                     { getlen(x) } -> std::convertible_to<size_t>;
+                    { x.getlen() } -> std::convertible_to<size_t>;
                 };
+template <IsFoo T> void setlen(T& x, size_t len) { x.len = len; }
 
 int main() {
     auto f2 = Foo2();
     auto f3 = Foo3();
     std::cout << f2.len << std::endl;
-    // setlen(f2, 10);
+    setlen(f2, 10);
     std::cout << f2.getlen() << std::endl;
     return 0;
 }

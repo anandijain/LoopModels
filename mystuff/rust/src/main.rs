@@ -2,11 +2,6 @@
 pub struct Foo {
     len: usize
 }
-// impl IsFoo for Foo {
-//     fn getlen(&self) -> usize {
-//         self.len
-//     }
-// }
 
 #[derive(Debug)]
 pub struct Foo2 {
@@ -15,8 +10,6 @@ pub struct Foo2 {
 
 pub trait IsFoo {
     fn getlen(&self) -> usize;
-        // self.len
-    // }
 }
 
 macro_rules! impl_with_field {
@@ -37,5 +30,5 @@ fn main() {
     println!("Hello, world! {:?}", y);
     y.len = 1;
     println!("Hello, world! {:?}", y.getlen());
-    
+
 }
